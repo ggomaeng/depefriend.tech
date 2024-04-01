@@ -12,6 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     ...sharedMetadata,
     other: frameMetadata,
+    openGraph: {
+      ...sharedMetadata.openGraph,
+      title: 'depefriend.tech',
+    },
   };
 }
 

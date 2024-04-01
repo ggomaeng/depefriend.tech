@@ -77,6 +77,7 @@ app.frame('/depe', async (c) => {
   const fid = c.var.interactor?.fid;
 
   return c.res({
+    title: 'depefriend.tech',
     image: (
       <div tw="flex h-full w-full flex-col">
         <img
