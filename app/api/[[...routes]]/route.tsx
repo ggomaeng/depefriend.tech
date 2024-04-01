@@ -43,6 +43,7 @@ app.use(
 
 app.frame('/', (c) => {
   return c.res({
+    title: 'depefriend.tech',
     image: 'https://i.imgur.com/HKXCGcC.gif',
     imageAspectRatio: '1:1',
     intents: [
@@ -61,6 +62,7 @@ app.frame('/depe', async (c) => {
 
   if (!pfpUrl || !isImage) {
     return c.res({
+      title: 'depefriend.tech',
       image: (
         <div tw="flex h-full w-full flex-col items-center justify-center">
           <div tw="flex">You dont have a pfp</div>
