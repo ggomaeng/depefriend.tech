@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Button } from './Button';
+import { sharedMetadata } from '@/constants/metadata';
 
 import { getRootUrl } from '@/utils/url';
 import { getFrameMetadata } from 'frog/next';
@@ -9,6 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const url = getRootUrl();
   const frameMetadata = await getFrameMetadata(`${url}/api`);
   return {
+    ...sharedMetadata,
     other: frameMetadata,
   };
 }

@@ -19,6 +19,7 @@ const fdk = new PinataFDK({
 const app = new Frog<{
   Variables: NeynarVariables;
 }>({
+  browserLocation: '/',
   basePath: '/api',
   imageOptions: {
     width: 600,
