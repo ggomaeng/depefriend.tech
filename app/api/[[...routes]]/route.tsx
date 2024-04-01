@@ -9,6 +9,7 @@ import { NeynarVariables, neynar } from 'frog/middlewares';
 import { NEYNAR_API_KEY, PINATA_API_JWT } from '@/env/server-env';
 import { PinataFDK } from 'pinata-fdk';
 import ky from 'ky';
+import { getRootUrl } from '@/utils/url';
 
 const fdk = new PinataFDK({
   pinata_jwt: PINATA_API_JWT,
@@ -61,18 +62,15 @@ app.frame('/depe', async (c) => {
     return c.res({
       image: (
         <div tw="flex h-full w-full flex-col items-center justify-center">
-          <div tw="flex">You need to have a PFP</div>
+          <div tw="flex">You dont have a pfp</div>
         </div>
       ),
       imageAspectRatio: '1:1',
-      intents: [<Button>🐸 🐸 🐸 DePEpEfY mE 🐸 🐸 🐸</Button>],
+      intents: [<Button>Go back</Button>],
     });
   }
 
-  const rootUrl =
-    process.env.NODE_ENV === 'production'
-      ? 'https://depepefy.vercel.app'
-      : `http://localhost:${process.env.PORT}`;
+  const rootUrl = getRootUrl();
   const fid = c.var.interactor?.fid;
 
   return c.res({
@@ -94,7 +92,7 @@ app.frame('/depe', async (c) => {
       <Button.Link href={`${rootUrl}/api/depepefy/${fid}`}>
         Download Image
       </Button.Link>,
-      <Button>Make it a collection</Button>,
+      <Button>Become an official friend</Button>,
     ],
   });
 });

@@ -16,16 +16,16 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function DepePage() {
   return (
     <div>
+      <h1>DEPEfriend.tech</h1>
       <Image
         src={'https://i.imgur.com/sWppBb5.png'}
         width={300}
         height={300}
         alt="depe"
       />
-      <h1>DEPEfriend.tech</h1>
       <p>
-        Introducing the DEPEfriend.tech: an experimental project poised to
-        revolutionize the way we interact with degens. If you still don&#39;t
+        Introducing the <b>DEPEfriend.tech</b>: an experimental project poised
+        to revolutionize the way we interact with degens. If you still don&#39;t
         know what $DEPE is, you can click the x button on your browser right
         now. If you know what DEGEN / DEPE is, then you&#39;re in the right
         place, friend. DEPEfriend.tech is like friend.tech, but for degens only.{' '}
@@ -42,6 +42,19 @@ export default function DepePage() {
         just like friend.tech; however, you can only purchase other keys with
         $DEPE.
       </h2>
+      <Image
+        src="/depechart.png"
+        width={800}
+        height={600}
+        style={{
+          maxWidth: '100%',
+          objectFit: 'contain',
+        }}
+        alt="chart"
+      />
+
+      <h1>Max supply of $DEPE 420,690,000,000 DEPE</h1>
+      <h1>TVL as of April 2nd: 122.26M WDEGEN</h1>
       <div
         style={{
           marginTop: 20,
@@ -52,6 +65,10 @@ export default function DepePage() {
           width={500}
           height={500}
           alt="gif"
+          style={{
+            maxWidth: '100%',
+            objectFit: 'contain',
+          }}
         />
       </div>
       <h1>Are you really a degen if you&#39;re not on Warpcast?</h1>
@@ -74,7 +91,7 @@ export default function DepePage() {
           End price: <b>420,000 DEPE</b>
         </p>
       </div>
-      <h1>So, how do I become a DEPEfriend?</h1>
+      <h1>How do I become a DEPEfriend?</h1>
       <h2>Also simple. Click on your favorite button below.</h2>
       <p
         style={{
