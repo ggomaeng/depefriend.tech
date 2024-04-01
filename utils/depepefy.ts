@@ -5,8 +5,15 @@ import { NeynarAPIClient } from '@neynar/nodejs-sdk';
 import { readFile } from 'fs/promises';
 import ky from 'ky';
 import sharp from 'sharp';
+import axios from 'axios';
 
-const client = new NeynarAPIClient(NEYNAR_API_KEY);
+const client = new NeynarAPIClient(NEYNAR_API_KEY, {
+  axiosInstance: axios.create({
+    headers: {
+      'User-Agent': 'nodejs',
+    },
+  }),
+});
 
 export async function generate(fid: number) {
   const { users } = await client.fetchBulkUsers([fid]);

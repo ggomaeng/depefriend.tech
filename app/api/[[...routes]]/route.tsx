@@ -1,15 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 /** @jsxImportSource frog/jsx */
-import { Button, Frog, TextInput } from 'frog';
-import { handle } from 'frog/next'; /** @jsxImportSource frog/jsx */
-import { devtools } from 'frog/dev';
-import { serveStatic } from 'frog/serve-static';
-import { NeynarVariables, neynar } from 'frog/middlewares';
-import { NEYNAR_API_KEY, PINATA_API_JWT } from '@/env/server-env';
-import { PinataFDK } from 'pinata-fdk';
-import ky from 'ky';
+import { DEPE_SECRET, NEYNAR_API_KEY, PINATA_API_JWT } from '@/env/server-env';
 import { getRootUrl } from '@/utils/url';
+import { AES } from 'crypto-js';
+import { Button, Frog } from 'frog';
+import { devtools } from 'frog/dev';
+import { NeynarVariables, neynar } from 'frog/middlewares';
+import { handle } from 'frog/next'; /** @jsxImportSource frog/jsx */
+import { serveStatic } from 'frog/serve-static';
+import ky from 'ky';
+import { PinataFDK } from 'pinata-fdk';
 
 const fdk = new PinataFDK({
   pinata_jwt: PINATA_API_JWT,
@@ -21,6 +22,7 @@ const app = new Frog<{
 }>({
   browserLocation: '/',
   basePath: '/api',
+  secret: DEPE_SECRET,
   imageOptions: {
     width: 600,
     height: 600,
@@ -76,6 +78,13 @@ app.frame('/depe', async (c) => {
   const rootUrl = getRootUrl();
   const fid = c.var.interactor?.fid;
 
+  const params = {
+    fid,
+  };
+
+  console.log({ params });
+  const encrypted = AES.encrypt(JSON.stringify(params), DEPE_SECRET).toString();
+
   return c.res({
     title: 'depefriend.tech',
     image: (
@@ -96,7 +105,11 @@ app.frame('/depe', async (c) => {
       <Button.Link href={`${rootUrl}/api/depepefy/${fid}`}>
         Download Image
       </Button.Link>,
-      <Button>Become an official friend</Button>,
+      <Button.Redirect
+        location={`${rootUrl}/deploy?hash=${encodeURIComponent(encrypted)}`}
+      >
+        Become an official friend
+      </Button.Redirect>,
     ],
   });
 });

@@ -8,6 +8,10 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config, { buildId, webpack, isServer }) => {
+    config.externals.push('pino-pretty', 'lokijs', 'encoding', 'canvas');
+    return config;
+  },
 };
 
 export default nextConfig;
