@@ -126,8 +126,8 @@ export async function generate(fid: number) {
   // Add golden glow behind
   ctx.beginPath();
   ctx.arc(370, 830, 60, 0, Math.PI * 2, true); // Slightly larger radius for the glow effect
-  ctx.fillStyle = 'gold';
-  ctx.shadowColor = 'gold';
+  ctx.fillStyle = 'yellow';
+  ctx.shadowColor = 'yellow';
   ctx.shadowBlur = 20;
   ctx.fill();
   ctx.restore();

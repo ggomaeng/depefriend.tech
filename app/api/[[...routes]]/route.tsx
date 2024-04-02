@@ -48,9 +48,7 @@ app.frame('/', (c) => {
     title: 'depefriend.tech',
     image: 'https://i.imgur.com/HKXCGcC.gif',
     imageAspectRatio: '1:1',
-    intents: [
-      <Button action="/depe">🐸 🐸 🐸 DePEpEfrIenD ME 🐸 🐸 🐸</Button>,
-    ],
+    intents: [<Button action="/depe">depefriend me</Button>],
   });
 });
 
@@ -67,7 +65,7 @@ app.frame('/depe', async (c) => {
       title: 'depefriend.tech',
       image: (
         <div tw="flex h-full w-full flex-col items-center justify-center">
-          <div tw="flex">You dont have a pfp</div>
+          <div tw="flex">you dont have a pfp</div>
         </div>
       ),
       imageAspectRatio: '1:1',
@@ -103,12 +101,12 @@ app.frame('/depe', async (c) => {
     imageAspectRatio: '1:1',
     intents: [
       <Button.Link href={`${rootUrl}/api/depepefy/${fid}`}>
-        Download Image
+        download image
       </Button.Link>,
       <Button.Redirect
         location={`${rootUrl}/deploy?hash=${encodeURIComponent(encrypted)}`}
       >
-        Become an official friend
+        become an official friend
       </Button.Redirect>,
     ],
   });

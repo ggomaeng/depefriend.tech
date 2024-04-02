@@ -9,7 +9,11 @@ export default function WalletButtons() {
         onClick={() => connect({ connector })}
         style={{ fontSize: 18 }}
       >
-        {connector.name === 'Injected' ? 'Browser' : connector.name}
+        {connector.name === 'Injected'
+          ? 'browser wallet'
+          : connector.name === 'Safe'
+            ? 'safe wallet'
+            : connector.name.toLowerCase()}
       </button>
       &nbsp;&nbsp;
     </>

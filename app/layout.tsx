@@ -1,9 +1,8 @@
+import { Providers } from '@/app/providers';
 import { sharedMetadata } from '@/constants/metadata';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { config } from './config';
 import { headers } from 'next/headers';
 import { cookieToInitialState } from 'wagmi';
-import { Providers } from '@/app/providers';
+import { config } from './config';
 
 export const metadata = sharedMetadata;
 

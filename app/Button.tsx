@@ -7,7 +7,7 @@ export function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const [startTimestamp] = useState(Date.now());
 
   const searchParams = queryString.stringify({
-    text: `I want to be depefriend.\n\nhttps://depefriend.tech`,
+    text: `introducing the depefriend.tech\n\nyour own $DEPE-infused PFP, backed by a deep $DEPE liquidity  🐸`,
     'embeds[]': 'https://depefriend.tech',
   });
 

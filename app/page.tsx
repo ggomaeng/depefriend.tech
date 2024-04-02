@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     other: frameMetadata,
     openGraph: {
       ...sharedMetadata.openGraph,
-      title: 'depefriend.tech',
+      title: 'DepeFriend.tech',
     },
   };
 }
@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function DepePage() {
   return (
     <div>
-      <h1>DEPEfriend.tech</h1>
+      <h1>DepeFriend.tech</h1>
       <Image
         src={'https://i.imgur.com/sWppBb5.png'}
         width={300}
@@ -30,11 +30,11 @@ export default function DepePage() {
         alt="depe"
       />
       <p>
-        Introducing the <b>DEPEfriend.tech</b>: an experimental project poised
+        Introducing the <b>DepeFriend.tech</b>: an experimental project poised
         to revolutionize the way we interact with degens. If you still don&#39;t
         know what $DEPE is, you can click the x button on your browser right
         now. If you know what DEGEN / DEPE is, then you&#39;re in the right
-        place, friend. DEPEfriend.tech is like friend.tech, but for degens only.{' '}
+        place, friend. DepeFriend.tech is like friend.tech, but for degens only.{' '}
         <i>Simple</i>.
       </p>
       <h2
@@ -61,6 +61,9 @@ export default function DepePage() {
 
       <h1>Max supply of $DEPE 420,690,000,000 DEPE</h1>
       <h1>TVL as of April 2nd: 122.26M WDEGEN</h1>
+      <a href="https://text.is/DegenPepe" target="_blank">
+        $DEPE details
+      </a>
       <div
         style={{
           marginTop: 20,
@@ -91,10 +94,10 @@ export default function DepePage() {
           Max supply: <b>1,000</b>
         </p>
         <p>
-          Starting price: <b>69,000 DEPE</b>
+          Starting price: <b>4,269 DEPE</b>
         </p>
         <p>
-          End price: <b>420,000 DEPE</b>
+          End price: <b>426,900 DEPE</b>
         </p>
       </div>
       <h1>How do I become a DEPEfriend?</h1>
@@ -106,19 +109,94 @@ export default function DepePage() {
       >
         Hint: one of the buttons might give you a little surprise.
       </p>
-      {Array.from({ length: 20 }).map(() => {
-        return (
-          <>
-            <br />
-            <Button>click me</Button>&nbsp;&nbsp;
-            <Button>click me</Button>&nbsp;&nbsp;
-            <Button>click me</Button>&nbsp;&nbsp;
-            <Button>click me</Button>&nbsp;&nbsp;
-            <Button>click me</Button>&nbsp;&nbsp;
-            <Button>click me</Button>
-          </>
-        );
-      })}
+
+      <div>
+        <div>
+          <Button>click me</Button>
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button>click me</Button>
+        </div>
+        <Button>click me</Button>
+        <Button>click me</Button>
+      </div>
+
+      <br />
+      <br />
+      <div>
+        <div>
+          <Button>click me</Button>
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+        </div>
+        <Button>click me</Button>
+        <Button>click me</Button>
+      </div>
+
+      <br />
+      <br />
+      <div>
+        <div>
+          <Button>click me</Button>
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+        </div>
+        <Button>click me</Button>
+      </div>
+
+      <br />
+      <br />
+      <div>
+        <div>
+          <Button>click me</Button>
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+          <Button>click me</Button>
+        </div>
+        <div>
+          <Button>click me</Button>
+        </div>
+        <Button>click me</Button>
+        <Button>click me</Button>
+      </div>
 
       <div
         style={{
