@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import WalletButtons from '@/app/WalletButtons';
 import { config } from '@/app/config';
@@ -148,7 +149,7 @@ export default function DeployPage() {
   return (
     <div>
       <h1>welcum depe friend</h1>
-      <Image
+      <img
         src={`${getRootUrl()}/api/depepefy/${user.fid}`}
         width={300}
         height={300}
