@@ -18,6 +18,7 @@ export default function DeployPage() {
   const { chainId, connector, address, isConnected } = useAccount();
   const [user, setUser] = useState<User>();
   const [error, setError] = useState('');
+  const [mcUrl, setMcUrl] = useState('');
   const [creating, setCreating] = useState(false);
   const [txError, setTxError] = useState('');
   const searchParams = useSearchParams();
@@ -165,6 +166,7 @@ export default function DeployPage() {
                         ...prev,
                         `NFT created: ${tx.transactionHash}`,
                       ]);
+                      setMcUrl(`https://mint.club/nft/degen/${symbol}`);
                     },
                     onError(e: any) {
                       setTxError(e?.message);
@@ -185,6 +187,11 @@ export default function DeployPage() {
             {stack.map((s, i) => (
               <div key={i}>{s}</div>
             ))}
+            {mcUrl && (
+              <div>
+                <a href={mcUrl}>trade your keys here</a>
+              </div>
+            )}
             {txError && (
               <div
                 style={{
