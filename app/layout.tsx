@@ -1,6 +1,7 @@
 import { Providers } from '@/app/providers';
 import { sharedMetadata } from '@/constants/metadata';
 import { headers } from 'next/headers';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { cookieToInitialState } from 'wagmi';
 import { config } from './config';
 
@@ -17,6 +18,7 @@ export default function RootLayout({
       <Providers initialState={initialState}>
         <body>{children}</body>
       </Providers>
+      <GoogleAnalytics gaId="G-33WTETWFXX" />
     </html>
   );
 }

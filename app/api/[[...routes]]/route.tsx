@@ -103,11 +103,11 @@ app.frame('/depe', async (c) => {
       <Button.Link href={`${rootUrl}/api/depepefy/${fid}`}>
         download image
       </Button.Link>,
-      <Button.Redirect
-        location={`${rootUrl}/deploy?hash=${encodeURIComponent(encrypted)}`}
+      <Button.Link
+        href={`${rootUrl}/deploy?hash=${encodeURIComponent(encrypted)}`}
       >
         become an official friend
-      </Button.Redirect>,
+      </Button.Link>,
     ],
   });
 });
