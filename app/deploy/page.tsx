@@ -150,7 +150,7 @@ export default function DeployPage() {
     <div>
       <h1>welcum depe friend</h1>
       <img
-        src={`${getRootUrl()}/api/depepefy/${user.fid}`}
+        src={`/api/depepefy/${user.fid}`}
         width={300}
         height={300}
         alt="pfp"
