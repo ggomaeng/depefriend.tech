@@ -4,6 +4,7 @@ import { config } from '@/app/config';
 import { decrypt } from '@/app/deploy/decrypt';
 import { uploadImage, uploadMetadata } from '@/app/ipfs';
 import { generateNextAvailableSymbol } from '@/utils/symbol';
+import { getRootUrl } from '@/utils/url';
 import { User } from '@neynar/nodejs-sdk/build/neynar-api/v2';
 import { computeCreate2Address, mintclub } from 'mint.club-v2-sdk';
 import Image from 'next/image';
@@ -148,11 +149,13 @@ export default function DeployPage() {
     <div>
       <h1>welcum depe friend</h1>
       <Image
-        src={`/api/depepefy/${user.fid}`}
+        src={`${getRootUrl()}/api/depepefy/${user.fid}`}
         width={300}
         height={300}
         alt="pfp"
-        onError={() => setError('No PFP found')}
+        onError={() => {
+          setError('pfp not found');
+        }}
       />
       <div>
         <p>
