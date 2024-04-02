@@ -153,7 +153,8 @@ export default function DeployPage() {
         width={300}
         height={300}
         alt="pfp"
-        onError={() => {
+        onError={(e) => {
+          console.error(e);
           setError('pfp not found');
         }}
       />
