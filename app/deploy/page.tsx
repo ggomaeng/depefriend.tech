@@ -5,15 +5,13 @@ import { config } from '@/app/config';
 import { decrypt } from '@/app/deploy/decrypt';
 import { uploadImage, uploadMetadata } from '@/app/ipfs';
 import { generateNextAvailableSymbol } from '@/utils/symbol';
-import { getRootUrl } from '@/utils/url';
 import { User } from '@neynar/nodejs-sdk/build/neynar-api/v2';
 import { computeCreate2Address, mintclub } from 'mint.club-v2-sdk';
-import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
 import { createWalletClient, custom } from 'viem';
-import { base, degen, sepolia } from 'viem/chains';
+import { degen } from 'viem/chains';
 import { useAccount, useDisconnect, useSwitchChain } from 'wagmi';
 import { getConnections } from 'wagmi/actions';
 
@@ -297,7 +295,7 @@ export default function DeployPage() {
                     onClick={() => {
                       const shareParams = queryString.stringify({
                         text: `i am a /depe friend now 🐸\n\nhttps://depefriend.tech`,
-                        'embeds[]': mcUrl,
+                        'embeds[]': [mcUrl, 'https://depefriend.tech'],
                       });
 
                       const href = `https://warpcast.com/~/compose?${shareParams}`;
