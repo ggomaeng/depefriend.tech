@@ -1,11 +1,11 @@
-import { createCanvas, loadImage } from 'canvas';
 import { NEYNAR_API_KEY } from '@/env/server-env';
 import { getDominantColorInGrid, rgbToHex } from '@/utils/colors';
+import { getRootUrl } from '@/utils/url';
 import { NeynarAPIClient } from '@neynar/nodejs-sdk';
-import { readFile } from 'fs/promises';
+import axios from 'axios';
+import { createCanvas, loadImage } from 'canvas';
 import ky from 'ky';
 import sharp from 'sharp';
-import axios from 'axios';
 
 const client = new NeynarAPIClient(NEYNAR_API_KEY, {
   axiosInstance: axios.create({
@@ -70,8 +70,8 @@ export async function generate(fid: number) {
   const hat = gridColor(1, 0);
   const lips = gridColor(2, 2);
 
-  let newBodySvg = await readFile('./public/depe.svg', 'utf-8');
-  let newFingerSvg = await readFile('./public/finger.svg', 'utf-8');
+  let newBodySvg = await (await fetch(`${getRootUrl()}/depe.svg`)).text();
+  let newFingerSvg = await (await fetch(`${getRootUrl()}/finger.svg`)).text();
   // depe has 6 colors, 1 being black for outline and 1 white for eye.
   // only replace the middle 4 colors
   const bodyColors: string[] = newBodySvg.match(/#[0-9a-fA-F]+/g) || [];
