@@ -3,23 +3,23 @@
 import WalletButtons from '@/app/WalletButtons';
 import { config } from '@/app/config';
 import { decrypt } from '@/app/deploy/decrypt';
+import { generateArgs } from '@/app/generate-args';
 import { uploadImage, uploadMetadata } from '@/app/ipfs';
 import { generateNextAvailableSymbol } from '@/utils/symbol';
 import { User } from '@neynar/nodejs-sdk/build/neynar-api/v2';
-import { computeCreate2Address, mintclub } from 'mint.club-v2-sdk';
+import { BOND_ABI, computeCreate2Address, wei } from 'mint.club-v2-sdk';
 import { useSearchParams } from 'next/navigation';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
-import { createWalletClient, custom } from 'viem';
 import { degen } from 'viem/chains';
 import { useAccount, useDisconnect, useSwitchChain } from 'wagmi';
-import { getConnections } from 'wagmi/actions';
+import {
+  simulateContract,
+  waitForTransactionReceipt,
+  writeContract,
+} from 'wagmi/actions';
 
 const TARGET_CHAIN = degen;
-const reserveToken = {
-  address: '0x2B3006D34359F3C23429167a659b18cC9c6F8bcA',
-  decimals: 18,
-} as const; // DEPE
 // const TARGET_CHAIN = base;
 // const reserveToken = {
 //   address: '0x4200000000000000000000000000000000000006',
@@ -222,49 +222,49 @@ export default function DeployPage() {
                     symbol: `depefriend-${user.username}`,
                   });
 
-                  const [{ connector }] = getConnections(config);
-                  const provider = await connector.getProvider();
-                  const client = createWalletClient({
-                    chain: TARGET_CHAIN,
-                    transport: custom(provider as any),
-                    account: address,
+                  const args = generateArgs({
+                    username: user.username,
+                    hash: metadataUrl,
+                    symbol,
                   });
-                  const sdk = mintclub.withWalletClient(client as any);
-                  const nft = sdk.nft(symbol);
-                  const a = await nft.create({
-                    name,
-                    reserveToken,
-                    buyRoyalty: 5,
-                    sellRoyalty: 5,
-                    stepData,
-                    metadataUrl,
-                    debug(args) {
-                      console.log(args);
-                    },
-                    onSuccess: (tx) => {
-                      const computedAddress = computeCreate2Address(
-                        degen.id,
-                        'ERC1155',
-                        symbol,
-                      );
-                      fetch(
-                        `https://mint.club/api/monitor/refresh/token?version=2&chainId=${degen.id}&tokenAddress=${computedAddress}`,
-                      ).catch((e) => {
-                        console.error(e);
-                      });
-                      setStack((prev) => [
-                        ...prev,
-                        `NFT created: ${tx.transactionHash}`,
-                      ]);
-                      setMcUrl(`https://mint.club/nft/degen/${symbol}`);
-                    },
-                    onError(e: any) {
-                      setTxError(e?.message);
-                      setCreating(false);
-                      console.error(e);
-                    },
+                  console.log(args);
+
+                  const { request } = await simulateContract(config, {
+                    chainId: TARGET_CHAIN.id,
+                    abi: BOND_ABI,
+                    address: '0x3bc6B601196752497a68B2625DB4f2205C3b150b',
+                    functionName: 'createMultiToken',
+                    args,
+                    value: wei(50, 18),
                   });
-                  console.log({ a });
+                  setStack((prev) => [...prev, 'Confirm in your wallet']);
+
+                  const hash = await writeContract(config, request);
+                  setStack((prev) => [...prev, 'Waiting for receipt...']);
+                  const receipt = await waitForTransactionReceipt(config, {
+                    hash,
+                  });
+
+                  const computedAddress = computeCreate2Address(
+                    degen.id,
+                    'ERC1155',
+                    symbol,
+                  );
+
+                  fetch(
+                    `https://mint.club/api/monitor/refresh/token?version=2&chainId=${degen.id}&tokenAddress=${computedAddress}`,
+                  ).catch((e) => {
+                    console.error(e);
+                  });
+
+                  setStack((prev) => [
+                    ...prev,
+                    `NFT created - tx hash: ${receipt.transactionHash}`,
+                  ]);
+
+                  setMcUrl(`https://mint.club/nft/degen/${symbol}`);
+
+                  console.log(receipt);
                 } catch (e: any) {
                   console.error(e);
                   setCreating(false);
